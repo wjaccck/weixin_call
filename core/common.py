@@ -65,5 +65,5 @@ class Send_message(object):
         return json.loads(result)
 
     def run(self, agent_id,to_user,msg):
-        result = self._send_msg(int(agent_id),to_user,msg)
-        print result
+        result= self._send_msg(int(agent_id),to_user,msg)
+        return result
