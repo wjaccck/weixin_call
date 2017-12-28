@@ -19,14 +19,27 @@ def get_result(status,content):
                 }
     return result
 class Rest_api:
-    def __init__(self):
-        self.header = {"Authorization": "Token {0}".format(settings.PUBLISH_TOKEN), "Content-Type": "application/x-www-form-urlencoded"}
+    def __init__(self,token):
+        self.header = {"Authorization": "Token {0}".format(token), "Content-Type": "application/x-www-form-urlencoded"}
     def get(self, path):
         result=requests.get(path,headers=self.header)
         return result.status_code,result.content
     def post(self,path,data):
         result=requests.post(path,data=data,headers=self.header)
         return result.status_code,result.content
+
+class Info_api():
+    def __init__(self):
+        pass
+    def run(self,method,path,token,data):
+        api=Rest_api(token=token)
+        if method.upper()=='POST':
+            status,result=api.post(path=path,data=data)
+        elif method.upper()=='GET':
+            status,result=api.get(path=path+'?'+'&'.join(['='.join(x,data.get(x)) for x in data.keys()]))
+        else:
+            status,result=500,'wrong action'
+        return status,result
 
 class Send_message(object):
     def __init__(self):

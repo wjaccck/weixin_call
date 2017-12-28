@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="0f1eb5f8-648a-4ec7-8cfa-dbf4ba039c6e" name="weixin_call" url="http://10.120.180.40">
+        <fileTransfer host="10.120.180.40" port="22" rootFolder="/opt/app/weixin_call" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

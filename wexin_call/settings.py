@@ -26,7 +26,7 @@ SECRET_KEY = '!h15cr=bx)9pmmd8k&1#top6oz4*moilzh%93!&37h747f8(z('
 DEBUG = True
 
 ALLOWED_HOSTS = ['base.test.17shihui.com']
-ALLOWED_ACTION = ['publish']
+# ALLOWED_ACTION = ['publish']
 
 PUBLISH_TOKEN='6d40e9c31ac3e14252021220058b00ad587c0d43'
 
@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'api.apps.ApiConfig',
     'corsheaders',
-    # 'api',
+    'djcelery'
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -123,6 +124,15 @@ USE_L10N = True
 USE_TZ = True
 
 
+import djcelery
+# from kombu import Exchange, Queue
+djcelery.setup_loader()
+# Celery Settings
+BROKER_URL = 'redis://:cc62601845fc3c66cdbb81915a871605@127.0.0.1:6381/0'
+CELERY_RESULT_BACKEND = 'redis://:cc62601845fc3c66cdbb81915a871605@127.0.0.1:6381/1'
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
@@ -187,3 +197,5 @@ LOGGING = {
         },
     }
 }
+
+
